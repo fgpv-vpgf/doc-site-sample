@@ -11,6 +11,7 @@ var runSequence = require('run-sequence');
 var gutil = require('gulp-util');
 var browserSync = require('browser-sync');
 var deploy = require('gulp-gh-pages');
+var Dgeni = require('dgeni');
 
 // source directives and services
 var srcJsFiles = 'src/**/*.js';
@@ -85,3 +86,18 @@ gulp.task('deploy-prod', ['build'], function () {
 
 // Default Task
 gulp.task('default', ['serve']);
+
+// // Dgeni Task
+// gulp.task('dgeni', function() {
+//   var dgeni = new Dgeni([require('./config/dgeni-fgpv')]);
+//   return dgeni.generate();
+// });
+gulp.task('dgeni', function() {
+  try {
+    var dgeni = new Dgeni([require('./config/dgeni-conf')]);
+    return dgeni.generate();
+  } catch(x) {
+    console.log(x.stack);
+    throw x;
+  }
+});
