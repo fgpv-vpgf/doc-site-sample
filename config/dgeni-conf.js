@@ -12,7 +12,7 @@ module.exports = new Package('dgeni-example', [
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
-  log.level = 'info';
+  log.level = 'debug';
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
@@ -39,7 +39,7 @@ module.exports = new Package('dgeni-example', [
     '${ doc.template }',
     '${ doc.id }.${ doc.docType }.template.html',
     '${ doc.id }.template.html',
-    '${ doc.docType }.template.html',
+    '${ doc.docType }.template.html',    
     'common.template.html'
   ];
 })
