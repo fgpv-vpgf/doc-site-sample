@@ -3,8 +3,6 @@
     // angular.module('esri.map', []);
 
     /**
-     * @ngdoc service
-     * @name global.directive:esriLoader
      * @description
      * Use `esriLoader` to lazyload the ESRI ArcGIS API or to require API modules.
      */
