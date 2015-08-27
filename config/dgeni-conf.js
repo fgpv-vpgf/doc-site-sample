@@ -9,9 +9,11 @@ module.exports = new Package('dgeni-example', [
   require('dgeni-packages/nunjucks')
 ])
 
+.processor(require('./mergeJsToNg'))
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
+  //log.level = 'info';
   log.level = 'debug';
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');

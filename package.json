@@ -9,8 +9,9 @@
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "~1.6.1",
+    "canonical-path": "0.0.2",
     "dgeni": "^0.4.1",
-    "dgeni-packages": "^0.10.19",
+    "dgeni-packages": "git://github.com/angular/dgeni-packages.git#angular-docs",
     "gulp": "^3.8.9",
     "gulp-clean": "~0.3.0",
     "gulp-concat": "~2.2.0",
@@ -21,9 +22,8 @@
     "gulp-strip-debug": "~0.3.0",
     "gulp-uglify": "~0.3.0",
     "gulp-util": "~2.2.16",
-    "run-sequence": "~0.3.6",
-    "dgeni-packages": "git://github.com/angular/dgeni-packages.git#angular-docs",
-    "canonical-path": "0.0.2"
+    "lodash": "^3.10.1",
+    "run-sequence": "~0.3.6"
   },
   "repository": {
     "type": "git",

@@ -7,10 +7,9 @@
      * Use `esriLoader` to lazyload the ESRI ArcGIS API or to require API modules.
      */
     angular.module('esri.map').factory('esriLoader', function ($q) {
-
         /**
          * Load the ESRI ArcGIS API
-         *
+         * @memberof esriLoader
          * @param {Object} options Send a list of options of how to load the API.
          * @param {String} options.url the url to load the ESRI API, defaults to http://js.arcgis.com/3.14compact
          * @return {Promise} Returns a $q style which is resolved once the ESRI API has loaded.
