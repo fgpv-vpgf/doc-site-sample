@@ -25,6 +25,37 @@ module.exports = function jacksMergeProcessor(log) {
 			// 3. add reference link to parent service or directive
 			// find the memberof tag
 			// check type from doc.codeNode.type: e.g. FunctionDeclaration
+			
+			ngServiceDocs = _.filter(docs, { docType: 'ngService'});
+
+			ngDirectiveDocs = _.filter(docs, {docType: 'ngDirective'});
+
+			ngControllerDocs = _.filter(docs, {docType: 'ngController'});
+
+			jsDocs = _.filter(docs, {docType: 'js'});
+
+			jsDocs = _.filter(docs, function(doc) {
+				var tags = doc.tags.tags;
+				return _.find(tags, function(tag) {
+					if(tag.tagName === 'memberof') {
+						return true;
+					}
+					return false;
+				});
+			});
+
+
+			jsDocsWithMemberOf = _(docs).filter({docType: 'js'})
+										.filter(function(doc) {
+											var tags = doc.tags.tags;
+											return _.find(tags, function(tag) {
+												if(tag.tagName === 'memberof') {
+													return true;
+												}
+												return false;
+											});
+										})
+										.value();
 
 			docs.forEach( function(doc, idx, docs) {
 				if (doc.docType === 'js') {
