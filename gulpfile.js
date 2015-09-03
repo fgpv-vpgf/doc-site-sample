@@ -12,6 +12,7 @@ var gutil = require('gulp-util');
 var browserSync = require('browser-sync');
 var deploy = require('gulp-gh-pages');
 var Dgeni = require('dgeni');
+var del = require('del');
 
 // source directives and services
 var srcJsFiles = 'src/**/*.js';
@@ -92,7 +93,7 @@ gulp.task('default', ['serve']);
 //   var dgeni = new Dgeni([require('./config/dgeni-fgpv')]);
 //   return dgeni.generate();
 // });
-gulp.task('dgeni', function() {
+gulp.task('dgeni',['clean-docs'], function() {
   try {
     var dgeni = new Dgeni([require('./config/dgeni-conf')]);
     return dgeni.generate();
@@ -101,3 +102,12 @@ gulp.task('dgeni', function() {
     throw x;
   }
 });
+
+gulp.task('clean-docs', function() {
+  return del([
+    'docs/api/*.html',
+    'docs/api/modules/**'
+    ]);
+});
+
+gulp.task('dgeni:clean', ['clean-docs', 'dgeni']);
