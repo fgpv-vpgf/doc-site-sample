@@ -13,8 +13,7 @@ module.exports = new Package('dgeni-example', [
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
-  log.level = 'info';
-  // log.level = 'debug';
+  log.level = 'info'; // info, debug, silly
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
