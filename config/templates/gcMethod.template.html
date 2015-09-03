@@ -1,0 +1,43 @@
+{% extends 'base.template.html' %}
+
+{% block body %}
+
+<md-sidenav md-sizenav-left md-whiteframe-z2 md-is-locked-open="$mdMedia('min-width:600px')" class="site-sidenav">
+		<header class="nav-header" layout="column" layout-align="center center">
+			<img src="/images/bobcat_logo_sharp_smaller_s_white.png">
+			<h1 class="docs-logotype">FGPV-VPGF</h1>
+		</header>
+		<md-content layout-padding flex role="navigation"  class="site-sidenav">
+			<ul class="docs-menu">
+				<li md-button>Test 1</li>
+				<li md-button>Test 2</li>
+			</ul>
+		</md-content>
+</md-sidenav>
+<div flex layout="column">
+	<md-toolbar layout="row"  class="site-content-toolbar md-whiteframe-glow-z1" layout-padding>
+		<h1>{$ doc.codeName $} | ({$ doc.outputPath $})</h1>
+	</md-toolbar>
+	<div layout-padding layout-margin>
+		<p>{$ doc.description $}</p>
+
+		{%- if doc.params %}
+		<h2>Params</h2>
+		<ul>
+		{%- for param in doc.params %}
+		  <li>
+		    <strong>{$ param.tagName $}</strong> { {$ param.typeList $} } - {$ param.description $}
+		  </li>
+		{%- endfor %}
+		</ul>
+		{%- endif %}
+
+		{%- if doc.returns %}
+		<h2>Returns</h2>
+		<p>
+		  { {$ doc.returns.typeList $} } - {$ doc.returns.description $}
+		</p>
+		{%- endif %}
+	</div>
+</div>
+{% endblock %}
