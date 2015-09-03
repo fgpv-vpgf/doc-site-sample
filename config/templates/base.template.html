@@ -2,22 +2,32 @@
 <html ng-app="app">
 <head>
   <title>Dgeni Angular</title>
-  <link rel="stylesheet" type="text/css" href="/lib/angular-material/angular-material.css">
-  <script src="/lib/angular/angular.js"></script>
-  <script src="/lib/angular-animate/angular-animate.js"></script>
-  <script src="/lib/angular-aria/angular-aria.js"></script>
-  <script src="/lib/hammerjs/hammer.js"></script>
-  <script src="/lib/angular-material/angular-material.js"></script>
-  <script type="text/javascript">
-  angular.module('app', ['ngMaterial', 'ngAnimate', 'ngAria']);
-  </script>
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+  <link rel="stylesheet" href="/css/doc.css">
+  <meta name="viewport" content="initial-scale=1" />
+
+  <!-- <script src="/lib/angular/angular.js"></script> -->
+  <!-- <script src="/lib/angular-animate/angular-animate.js"></script> -->
+  <!-- <script src="/lib/angular-aria/angular-aria.js"></script> -->
+  
 </head>
 <body
   layout="vertical"
-  style="width: 600px"
   class="material-whiteframe-z1">
-  <material-content layout-padding>
+  <material-content layout="row" flex>
   {% block body %}{% endblock %}
   </material-content>
+<script src="/lib/hammerjs/hammer.js"></script>
+  <!-- <script src="/lib/angular-material/angular-material.js"></script> -->
+  <!-- Angular Material Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+  <script type="text/javascript">
+  angular.module('app', ['ngMaterial', 'ngAnimate', 'ngAria']);
+  </script>
 </body>
 </html>
