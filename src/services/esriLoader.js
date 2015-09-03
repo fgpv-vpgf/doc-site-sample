@@ -39,7 +39,7 @@
         }
 
         /** Check if the ESRI ArcGIS API is loaded
-         * @memberof esriLoader
+         * 
          * @return {Boolean} Returns a boolean if ESRI ArcGIS ASK is, in fact, loaded
          */
         function isLoaded() {
