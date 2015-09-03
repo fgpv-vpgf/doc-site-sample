@@ -68,6 +68,9 @@ module.exports = function jacksMergeProcessor(log) {
 						}
 					}
 
+					// update doc type
+					doc.docType = "gcMethod";
+
 				}
 			});
 
