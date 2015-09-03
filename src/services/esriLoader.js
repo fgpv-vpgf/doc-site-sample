@@ -39,6 +39,7 @@
         }
 
         /** Check if the ESRI ArcGIS API is loaded
+         * @memberof esriLoader
          * @return {Boolean} Returns a boolean if ESRI ArcGIS ASK is, in fact, loaded
          */
         function isLoaded() {
@@ -47,7 +48,7 @@
 
         /**
          * Load ESRI Module, this will use dojo's AMD loader
-         *
+         * @memberof esriLoader
          * @param {String|Array} modules A string of a module or an array of modules to be loaded.
          * @param {Function} optional callback function used to support AMD style loading, promise and callback are both add to the event loop, possible race condition.
          * @return {Promise} Returns a $q style promise which is resolved once modules are loaded
