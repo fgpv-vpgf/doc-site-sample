@@ -33,7 +33,7 @@ module.exports = function jacksMergeProcessor(log) {
 			// ngControllerDocs = _.filter(docs, {docType: 'ngController'});
 
 			ngDocs = _(docs).reject({docType: 'ngModule'})
-							.reject({docTYpe: 'componentGroup'})
+							.reject({docType: 'componentGroup'})
 							.value();
 
 
