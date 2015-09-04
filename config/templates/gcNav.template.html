@@ -1,0 +1,13 @@
+
+  {% for menuItem in doc.gcMenu %}
+  <li md-button>
+    {$ menuItem.name $} - {$ menuItem.url $}
+    {% if menuItem.submenus.length %}
+    <ul>
+      {% for subMenu in menuItem.submenus %}
+      <li md-button>{$ subMenu.title $}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
