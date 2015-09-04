@@ -15,9 +15,26 @@
 <body
   layout="vertical"
   class="material-whiteframe-z1">
-  <material-content layout="row" flex>
-  {% block body %}{% endblock %}
-  </material-content>
+  <div layout="row" flex>
+    <!-- side navigation -->
+    <md-sidenav md-sizenav-left md-whiteframe-z2 md-is-locked-open="$mdMedia('min-width:600px')" class="site-sidenav">
+        <header class="nav-header" layout="column" layout-align="center center">
+          <img src="/images/bobcat_logo_sharp_smaller_s_white.png">
+          <h1 class="docs-logotype">FGPV-VPGF</h1>
+        </header>
+        <md-content layout-padding flex role="navigation"  class="site-sidenav">
+          <ul class="docs-menu">
+            <li md-button>Test 1</li>
+            <li md-button>Test 2</li>
+          </ul>
+        </md-content>
+    </md-sidenav>
+    <!-- main content -->
+    <material-content layout="column" flex>
+      {% block body %}{% endblock %}
+    </material-content>
+  </div>
+  
 <script src="/lib/hammerjs/hammer.js"></script>
   <!-- <script src="/lib/angular-material/angular-material.js"></script> -->
   <!-- Angular Material Dependencies -->

@@ -1,10 +1,14 @@
 {% extends 'base.template.html' %}
 
 {% block body %}
-<h2>{$ doc.name $}</h2>
-<strong>({$ doc.docType $})</strong>
+<!-- common.template.html -->
+<md-toolbar layout="row" class="site-content-toolbar md-whiteframe-glow-z1"><h2 layout-padding>{$ doc.name $}</h2></md-toolbar>
 
-<p>{$ doc.description $}</p>
+<md-content layout-padding flex>
+	<strong>({$ doc.docType $})</strong>
 
-{$ doc.parent | relativeLink(doc, 'Go Up') $}
+	<p>{$ doc.description $}</p>
+
+	{$ doc.parent | relativeLink(doc, 'Go Up') $}
+</md-content>
 {% endblock %}
