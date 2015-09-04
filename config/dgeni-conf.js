@@ -10,6 +10,7 @@ module.exports = new Package('dgeni-example', [
 ])
 
 .processor(require('./mergeJsToNg'))
+.processor(require('./navProcessor'))
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
