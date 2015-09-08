@@ -9,6 +9,9 @@ module.exports = new Package('dgeni-example', [
   require('dgeni-packages/nunjucks')
 ])
 
+// add myRelativeLink to the package
+.factory(require('./myRelativeLink'))
+
 .processor(require('./mergeJsToNg'))
 .processor(require('./navProcessor'))
 
@@ -46,6 +49,10 @@ module.exports = new Package('dgeni-example', [
   ];
 })
 
+// add filter to template engine
+.config(function(templateEngine, myRelativeLinkInlineTag) {
+  templateEngine.filters.push(myRelativeLinkInlineTag);
+})
 
 .config(function(getLinkInfo) {
   getLinkInfo.relativeLinks = true;
