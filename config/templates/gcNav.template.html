@@ -1,6 +1,34 @@
 
-  {% for menuItem in doc.gcMenu %}
-  <li md-button>
+{% for menuItem in doc.gcMenu %}
+<!-- each module should have a menu -->
+  <md-menu>
+    <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+      {$ menuItem.name $} - {$ menuItem.url $}
+    </md-button>
+    <md-menu-content>
+      {% if menuItem.submenus.length %}
+      <ul class="gc_menu">
+        {% for subMenu in menuItem.submenus %}
+        <li md-menu-item>{$ subMenu.title $}
+          {% if subMenu.children.length %}
+            <ul class="gc_menu">
+            {% for child in subMenu.children %}
+              <li> {$ child.name  | myRelativeLink(child.outputPath) $}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif%}
+    </md-menu-content>
+  </md-menu>
+{% endfor %}
+
+
+
+
+  <!-- <li md-button>
     {$ menuItem.name $} - {$ menuItem.url $}
     {% if menuItem.submenus.length %}
     <ul>
@@ -9,5 +37,4 @@
       {% endfor %}
     </ul>
     {% endif %}
-  </li>
-  {% endfor %}
+  </li> -->
