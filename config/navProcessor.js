@@ -23,7 +23,8 @@ module.exports = function jackSNavProcessor(log) {
 					groups.forEach(function(group) {
 						// directives, services, filters ???
 						subMenu.push({
-							title: group[1].title
+							title: group[1].title,
+							children: group[1].children
 					    });
 
 					    // TODO: each group has children in array format
