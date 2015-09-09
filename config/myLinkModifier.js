@@ -6,7 +6,7 @@ module.exports = function myLinkModifierFilter(myApp) {
   return {
     name: 'myLinkModifier',
     process: function(url) {
-        if(myApp) {
+        if(myApp && myApp.isDeploy) {
             return path.join(myApp.deployPath, url);
         }
 

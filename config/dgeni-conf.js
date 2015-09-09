@@ -14,7 +14,7 @@ module.exports = new Package('dgeni-example', [
 .factory(require('./myLinkModifier'))
 .factory(require('./myApp'))
 
-.processor(require('./mergeJsToNg'))
+.processor(require('./myJSMergeProcessor'))
 .processor(require('./navProcessor'))
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {

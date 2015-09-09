@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 module.exports = function jackSNavProcessor(log) {
 	return {
-		$runAfter: ['jacksMergeProcessor'],
+		$runAfter: ['myJSMergeProcessor'],
 		$runBefore: ['renderDocsProcessor'],
 		$process: function (docs) {
 
