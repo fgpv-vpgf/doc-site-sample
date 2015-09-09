@@ -15,7 +15,7 @@ module.exports = new Package('dgeni-example', [
 .factory(require('./myApp'))
 
 .processor(require('./myJSMergeProcessor'))
-.processor(require('./navProcessor'))
+.processor(require('./myNavProcessor'))
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
@@ -46,7 +46,7 @@ module.exports = new Package('dgeni-example', [
     '${ doc.template }',
     '${ doc.id }.${ doc.docType }.template.html',
     '${ doc.id }.template.html',
-    '${ doc.docType }.template.html',    
+    '${ doc.docType }.template.html',
     'common.template.html'
   ];
 })
