@@ -1,17 +1,22 @@
 var _ = require('lodash');
 var path = require('canonical-path');
 
-module.exports = function myRelativeLinkInlineTag() {
+module.exports = function myRelativeLinkInlineTag(myApp) {
   return {
     name: 'myRelativeLink',
     process: function(myTitle, myOutputPath) {
 
-    var url;
-    title = myTitle;
-    url = path.join("/",myOutputPath);
-    var compiled = _.template('<a href="${url}">${title}</a>');
+        var url;
+        var compiled = _.template('<a href="${url}">${title}</a>');
+        var title = myTitle;
 
-    return compiled({ url: url, title: title });
+        if (myOutputPath) {
+            url = path.join(myApp.deployPath, myOutputPath);
+        } else{
+            return myTitle;
+        }
+
+        return compiled({ url: url, title: title });
     }
-  };
+  };  
 };
