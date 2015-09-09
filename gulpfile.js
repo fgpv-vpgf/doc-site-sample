@@ -111,3 +111,18 @@ gulp.task('clean-docs', function() {
 });
 
 gulp.task('dgeni:clean', ['clean-docs', 'dgeni']);
+
+
+
+// serve docs on local web server
+// and reload anytime source code or docs are modified
+gulp.task('dgeni:serve', ['dgeni:clean'], function() {
+  browserSync({
+    server: {
+      baseDir: ['docs\\api']
+    },
+    open: true,
+    port: 9001,
+    notify: false
+  });
+});
