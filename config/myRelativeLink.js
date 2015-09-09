@@ -11,7 +11,11 @@ module.exports = function myRelativeLinkInlineTag(myApp) {
         var title = myTitle;
 
         if (myOutputPath) {
-            url = path.join(myApp.deployPath, myOutputPath);
+            if(myApp.isDeploy){
+                url = path.join(myApp.deployPath, myOutputPath);
+            }else{
+                url = path.join("/", myOutputPath);
+            }
         } else{
             return myTitle;
         }
