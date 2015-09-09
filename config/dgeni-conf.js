@@ -11,6 +11,8 @@ module.exports = new Package('dgeni-example', [
 
 // add myRelativeLink to the package
 .factory(require('./myRelativeLink'))
+.factory(require('./myLinkModifier'))
+.factory(require('./myApp'))
 
 .processor(require('./mergeJsToNg'))
 .processor(require('./navProcessor'))
@@ -50,8 +52,9 @@ module.exports = new Package('dgeni-example', [
 })
 
 // add filter to template engine
-.config(function(templateEngine, myRelativeLinkInlineTag) {
+.config(function(templateEngine, myRelativeLinkInlineTag, myLinkModifierFilter) {
   templateEngine.filters.push(myRelativeLinkInlineTag);
+  templateEngine.filters.push(myLinkModifierFilter);
 })
 
 .config(function(getLinkInfo) {
