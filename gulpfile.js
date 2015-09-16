@@ -103,6 +103,8 @@ gulp.task('dgeni',['clean-docs'], function() {
   }
 });
 
+
+// remove doc related documents
 gulp.task('clean-docs', function() {
   return del([
     // 'dist/mydgeni/docs/**',
@@ -125,4 +127,12 @@ gulp.task('dgeni:serve', ['dgeni:clean'], function() {
     port: 9001,
     notify: false
   });
+});
+
+
+// important task: copy site resources to the app folder; images, styles, app.js
+// !myDgeni/docs/app/js/**/*.txt is for exclusion.
+gulp.task('docs-app', ['dgeni:clean'], function () {
+  return gulp.src(['myDgeni/docs/app/**/*', '!myDgeni/docs/app/js/**/*.txt'])
+  .pipe(gulp.dest('dist/mydgeni/docs/app'));
 });
