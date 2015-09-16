@@ -95,7 +95,7 @@ gulp.task('default', ['serve']);
 // });
 gulp.task('dgeni',['clean-docs'], function() {
   try {
-    var dgeni = new Dgeni([require('./config/dgeni-conf')]);
+    var dgeni = new Dgeni([require('./myDgeni/docs/config/dgeni-conf')]);
     return dgeni.generate();
   } catch(x) {
     console.log(x.stack);
@@ -105,8 +105,8 @@ gulp.task('dgeni',['clean-docs'], function() {
 
 gulp.task('clean-docs', function() {
   return del([
-    'docs/api/*.html',
-    'docs/api/modules/**'
+    // 'dist/mydgeni/docs/**',
+    'dist/mydgeni/docs/**'
     ]);
 });
 
@@ -119,7 +119,7 @@ gulp.task('dgeni:clean', ['clean-docs', 'dgeni']);
 gulp.task('dgeni:serve', ['dgeni:clean'], function() {
   browserSync({
     server: {
-      baseDir: ['docs\\api']
+      baseDir: ['dist/mydgeni/docs']
     },
     open: true,
     port: 9001,
