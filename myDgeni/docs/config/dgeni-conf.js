@@ -10,23 +10,23 @@ module.exports = new Package('dgeni-example', [
 ])
 
 // add myRelativeLink to the package
-.factory(require('./myRelativeLink'))
-.factory(require('./myLinkModifier'))
-.factory(require('./myApp'))
+.factory(require('./processor/myRelativeLink'))
+.factory(require('./processor/myLinkModifier'))
+.factory(require('./processor/myApp'))
 
-.processor(require('./myJSMergeProcessor'))
-.processor(require('./myNavProcessor'))
+.processor(require('./processor/myJSMergeProcessor'))
+.processor(require('./processor/myNavProcessor'))
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
-  log.level = 'info'; // info, debug, silly
+  log.level = 'debug'; // info, debug, silly
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
     { include: 'src/**/*.js', basePath: 'src' }
   ];
 
-  writeFilesProcessor.outputFolder  = 'docs/api';
+  writeFilesProcessor.outputFolder  = 'dist/mydgeni/docs/app/partials';
 
 })
 
@@ -40,7 +40,7 @@ module.exports = new Package('dgeni-example', [
   };
 
   templateFinder.templateFolders
-      .unshift(path.resolve(__dirname, 'templates'));
+      .unshift(path.resolve(__dirname, './config/templates'));
 
   templateFinder.templatePatterns = [
     '${ doc.template }',
