@@ -23,7 +23,7 @@ module.exports = new Package('dgeni-example', [
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
-    { include: 'src/**/*.js', basePath: 'src' }
+    { include: '../../src/**/*.js', basePath: '../../src' }
   ];
 
   writeFilesProcessor.outputFolder  = 'dist/mydgeni/docs/app/partials';
