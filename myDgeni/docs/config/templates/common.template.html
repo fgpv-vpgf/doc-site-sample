@@ -1,6 +1,3 @@
-{% extends 'base.template.html' %}
-
-{% block body %}
 <!-- common.template.html -->
 <md-toolbar layout="row" class="site-content-toolbar md-whiteframe-glow-z1"><h2 layout-padding>{$ doc.name $}</h2></md-toolbar>
 
@@ -11,4 +8,3 @@
 
 	{$ doc.parent | relativeLink(doc, 'Go Up') $}
 </md-content>
-{% endblock %}
