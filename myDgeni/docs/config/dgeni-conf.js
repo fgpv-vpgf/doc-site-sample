@@ -19,14 +19,14 @@ module.exports = new Package('dgeni-example', [
 
 .config(function(log, readFilesProcessor, writeFilesProcessor) {
 
-  log.level = 'debug'; // info, debug, silly
+  log.level = 'info'; // info, debug, silly
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
     { include: '../../src/**/*.js', basePath: '../../src' }
   ];
 
-  writeFilesProcessor.outputFolder  = 'dist/mydgeni/docs/app/partials';
+  writeFilesProcessor.outputFolder  = '../../dist/mydgeni/docs/app/partials';
 
 })
 
@@ -40,7 +40,7 @@ module.exports = new Package('dgeni-example', [
   };
 
   templateFinder.templateFolders
-      .unshift(path.resolve(__dirname, './config/templates'));
+      .unshift(path.resolve(__dirname, './templates'));
 
   templateFinder.templatePatterns = [
     '${ doc.template }',
