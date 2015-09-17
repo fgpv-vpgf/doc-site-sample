@@ -41,8 +41,15 @@ module.exports = function myNavProcessor(log) {
 
 			});
 
-			_.forEach(docs, function(doc) {
-				_.assign(doc, {'gcMenu':navMenu});
+			// create new doc called index,  set output location to  ../
+			// because the output location is in the partial folder for rest of the files
+			docs.push({
+				'docType': 'index',
+				'gcMenu': navMenu,
+				'name': 'This is a name field',
+				'title': 'This is a title field',
+				// 'path': '../../',
+				'outputPath': '../index.html'
 			});
 
 			return docs;
