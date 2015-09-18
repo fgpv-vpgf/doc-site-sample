@@ -6,7 +6,9 @@
   "directories": {
     "example": "examples"
   },
-  "dependencies": {},
+  "dependencies": {
+    "marked": "^0.3.5"
+  },
   "devDependencies": {
     "browser-sync": "~1.6.1",
     "canonical-path": "0.0.2",
