@@ -6,6 +6,30 @@ module.exports = function myNavProcessor(log) {
 		$runBefore: ['renderDocsProcessor'],
 		$process: function (docs) {
 
+			// generate route data
+			var apiRoutes = _(docs).filter(function(doc) {
+				return !_.contains(['index', 'content'], doc['docType']);
+			})
+			.value();
+
+			var tmpR = _.map(apiRoutes, function(route){
+					return {
+						name: route.name,
+						outputPath: './partials/' + route.outputPath,
+						url: '/' + _.trimRight(route.path, '/')
+					};
+				});
+
+			// generate constant-data for pages
+		      docs.push({
+		      	name: 'API',
+		      	docType: 'constant',
+		      	template: 'constant-data.template.js',
+		      	outputPath: '../js/api-data.js',
+		      	items: tmpR
+		      });
+
+		      // generate navMenu for index.html
 			var navMenu = [];
 
 			var moduleDocs = _.filter(docs, {docType: 'ngModule'});
@@ -51,6 +75,22 @@ module.exports = function myNavProcessor(log) {
 				// 'path': '../../',
 				'outputPath': '../index.html'
 			});
+
+			// var apiDocs = _(moduleDocs)
+			// .mapValues(function(myDocs) {
+			// 	return _.map(myDocs, function(doc){
+			// 		return {
+			// 			name: doc.name,
+			// 			outputPath: './partials/' + doc.url,
+			// 			url: '/api/' + doc.name,
+			// 			label: doc.lable || doc.name
+			// 		};
+			// 	});
+			// })
+			// .value();
+			
+
+
 
 			return docs;
 		}

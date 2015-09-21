@@ -6,7 +6,7 @@
     // see: https://github.com/pc035860/angular-highlightjs#demos
     angular
         .module('app', ['ngRoute'])
-        .config(function(PAGES, $routeProvider) {
+        .config(function(PAGES, API, $routeProvider) {
             $routeProvider
             .when('/', {
                 templateUrl: './partials/home.tmpl.html'
@@ -29,6 +29,15 @@
                             // uncomment to add controller for the page
                             // , controller: 'SomeController'
                         });
+                });
+            });
+
+            angular.forEach(API, function(apis, area) {
+            $routeProvider
+                .when(api.url, {
+                    templateUrl: api.outputPath
+                    // uncomment to add controller for the page
+                    // , controller: 'SomeController'
                 });
             });
         });
