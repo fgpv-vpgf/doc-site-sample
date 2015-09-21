@@ -75,7 +75,6 @@ module.exports = new Package('dgeni-example', [
     '${ doc.id }.${ doc.docType }.template.html',
     '${ doc.id }.template.html',
     '${ doc.docType }.template.html',
-    'content.template.html',
     'common.template.html'
   ];
 })
