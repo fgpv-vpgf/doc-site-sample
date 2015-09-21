@@ -1,3 +1,4 @@
+
 (function(angular) {
     'use strict';
     // NOTE: ngSelect and hljs are only included to support
@@ -5,14 +6,30 @@
     // see: https://github.com/pc035860/angular-highlightjs#demos
     angular
         .module('app', ['ngRoute'])
-        .config(function($routeProvider) {
+        .config(function(PAGES, $routeProvider) {
             $routeProvider
             .when('/', {
                 templateUrl: './partials/home.tmpl.html'
                 // controller: 'ExamplesCtrl'
             })
+            // manually added for testing purpose
+            .when('/api/esriLoader', {
+                templateUrl: './partials/modules/esri/maps/services/esriLoader/index.html'
+            })
             .otherwise({
                 redirectTo: '/'
+            });
+
+
+            angular.forEach(PAGES, function(pages, area) {
+                angular.forEach(pages, function(page) {
+                    $routeProvider
+                        .when(page.url, {
+                            templateUrl: page.outputPath
+                            // uncomment to add controller for the page
+                            // , controller: 'SomeController'
+                        });
+                });
             });
         });
 })(angular);
