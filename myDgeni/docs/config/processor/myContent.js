@@ -3,46 +3,42 @@ var _ = require('lodash');
 module.exports = function myContentProcessor(templateFinder, log) {
 	return {
 		$runAfter: ['myNavProcessor'],
-	    $runBefore: ['rendering-docs'],
-	    $process: function(docs) {
-	    	log.info('in myContentProcessor');
-	      // var contentDocs = _(docs)
-	      // .filter(function(doc) {
-	      //   return doc.docType === 'content';
-	      // })
-	      // .groupBy('area')
-	      // .mapValues(function(areaDocs) {
-	      //   return _.map(areaDocs, function(areaDoc) {
-	      //     return {
-	      //       name: areaDoc.name,
-	      //       outputPath: areaDoc.outputPath,
-	      //       url: '/' + areaDoc.path,
-	      //       label: areaDoc.label || areaDoc.name
-	      //     };
-	      //   });
-	      // }).
-	      // value();
+		$runBefore: ['rendering-docs'],
+		$process: function(docs) {
+			log.info('in myContentProcessor');
 
-	      // docs.push({
-	      //   name: 'PAGES',
-	      //   docType: 'content',
-	      //   template: 'constant-data.template.js',
-	      //   outputPath: 'js/content-data.js',
-	      //   items: contentDocs
-	      // });
-	      // _.forEach(docs, function(doc){
-	      // 	log.debug('doc.name:' + doc.name + ' ,doc.docType: ' + doc.docType);
-	      // });
-	      var contentDocs = _(docs).filter(function(doc){
-	      	return doc.docType === 'content';
-	      })
-	      .value();
+			// TODO: need to figureout where material setup area information
+			var contentDocs = _(docs).filter(function(doc){
+				return doc.docType === 'content';
+			})
+			.forEach(function(doc) {
+				doc.outputPath = 'content/' + doc.fileInfo.baseName + '.html';
+				doc.url = doc.fileInfo.baseName;
+			})
+			// need groupby to generate another collection
+			.groupBy('area')
+			.mapValues(function(filteredDocs) {
+				return _.map(filteredDocs, function(doc){
+					return {
+						name: doc.name,
+						outputPath: './partials/' + doc.outputPath,
+						url: '/' + doc.url,
+						label: doc.lable || doc.name
+					};
+				});
+			})
+			.value();
 
-	      contentDocs.forEach(function(doc) {
-	      	doc.outputPath = '../' + doc.fileInfo.baseName + '.html';
-	      });
+		      // generate constant-data for pages
+		      docs.push({
+		      	name: 'PAGES',
+		      	docType: 'constant',
+		      	template: 'constant-data.template.js',
+		      	outputPath: '../js/content-data.js',
+		      	items: contentDocs
+		      });
 
-	      return docs;
-	    }
+		      return docs;
+		  }
+		};
 	};
-};
