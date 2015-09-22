@@ -43,6 +43,8 @@ module.exports = function myJSMergeProcessor(log) {
 
 					log.debug("doc id:"+ doc.id + ", parentIdx:" + parentIdx + ", memberof:" + parentName);
 
+					
+
 					if(parentIdx > -1){
 
 						var parentDoc = ngDocs[parentIdx];
@@ -52,15 +54,18 @@ module.exports = function myJSMergeProcessor(log) {
 							parentDoc.methods = [];
 						}
 
+						// update path and outputPath
+						doc.path = parentDoc.path;
+						doc.outputPath = doc.path + doc.outputPath;
+						doc.name = doc.id;
+						
+						// add method to parent node
 						parentDoc.methods.push({
 							"name": doc.id,
-							"description": doc.description
+							"description": doc.description,
+							"url": '#/' + doc.path + doc.name
 						});
 
-						// if(_.isString(parentDoc.path)){
-							doc.path = parentDoc.path;
-							doc.outputPath = doc.path + doc.outputPath;
-						// }
 					}
 				}
 
