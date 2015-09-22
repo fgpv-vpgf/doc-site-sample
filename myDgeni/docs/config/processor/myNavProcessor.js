@@ -13,12 +13,22 @@ module.exports = function myNavProcessor(log) {
 			.value();
 
 			var tmpR = _.map(apiRoutes, function(route){
+
+				if (route.docType === 'gcMethod') {
+					return {
+						name: route.name,
+						outputPath: './partials/' + route.outputPath,
+						url: '/' + route.path + route.name 
+					};
+				} else {
 					return {
 						name: route.name,
 						outputPath: './partials/' + route.outputPath,
 						url: '/' + _.trimRight(route.path, '/')
 					};
-				});
+				}
+
+			});
 
 			// generate constant-data for pages
 		      docs.push({
