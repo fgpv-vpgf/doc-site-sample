@@ -4,7 +4,7 @@
   <title>Dgeni Angular</title>
   <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-  <link rel="stylesheet" href="{$ 'styles/doc.css' | myLinkModifier() $}">
+  <link rel="stylesheet" href="{$ 'styles/material.doc.css' | myLinkModifier() $}">
   <meta name="viewport" content="initial-scale=1" />
 
   <!-- <script src="/lib/angular/angular.js"></script> -->
@@ -25,7 +25,7 @@ class="material-whiteframe-z1">
   <ul class="docs-menu">
     <ul class="docs-menu">
       <li ng-repeat="section in menu.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
-        <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}">
+        <h2 class="menu-heading md-subhead">
           {{section.name}}
         </h2>
         <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
