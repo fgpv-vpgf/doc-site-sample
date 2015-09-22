@@ -32,8 +32,8 @@
                 });
             });
 
-            angular.forEach(API, function(apis, area) {
-            $routeProvider
+            angular.forEach(API, function(api) {
+                $routeProvider
                 .when(api.url, {
                     templateUrl: api.outputPath
                     // uncomment to add controller for the page
