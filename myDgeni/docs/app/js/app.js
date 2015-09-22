@@ -5,7 +5,7 @@
     // tabs that dynamically load code and highlight syntax
     // see: https://github.com/pc035860/angular-highlightjs#demos
     angular
-        .module('app', ['ngRoute'])
+        .module('app', ['ngRoute', 'ngMaterial'])
         .config(function(PAGES, API, $routeProvider) {
             $routeProvider
             .when('/', {
@@ -46,26 +46,34 @@
             
             // can be add in manually
             var sections = [{
-                name: 'Getting Started',
-                url: '/getting-started',
-                type: 'heading'
+                name: 'Project Docs',
+                type: 'heading',
+                children: [{
+                    name: 'Home',
+                    url: '/',
+                    type: 'link'
+                },
+                {
+                    name: 'Getting Started',
+                    url: '/getting_started',
+                    type: 'link'
+                }]
             }];
 
             // generated from *-data.js
             var apiDocs = [];
             api.forEach(function(item) {
-                apiDocs.push(item);
+                apiDocs.push({
+                    name: item.name,
+                    url: item.url,
+                    type: 'link'
+                });
             });
 
             sections.push({
                 name: 'API Reference',
                 type: 'heading',
-                children: [
-                {
-                    name: 'esri.maps',
-                    pages: apiDocs,
-                    type: 'toggle'
-                }]
+                children: apiDocs
             });
 
 
@@ -93,6 +101,27 @@
             }
             return doc.label || doc.name;
           };
-        });
+        })
+        .directive('menuLink', function() {
+          return {
+            scope: {
+              section: '='
+            },
+            templateUrl: 'partials/menu-link.tmpl.html',
+            link: function($scope, $element) {
+              // var controller = $element.parent().controller();
+
+              // $scope.isSelected = function() {
+              //   return controller.isSelected($scope.section);
+              // };
+
+              // $scope.focusSection = function() {
+              //   // set flag to be used later when
+              //   // $locationChangeSuccess calls openPage()
+              //   controller.autoFocusContent = true;
+              // };
+            }
+          };
+});
 
 })(angular);
