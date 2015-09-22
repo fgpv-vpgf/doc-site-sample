@@ -10,11 +10,14 @@ module.exports = function myRelativeLinkInlineTag(myApp) {
         var compiled = _.template('<a href="${url}">${title}</a>');
         var title = myTitle;
 
+        // remove trailing '/'
+        myOutputPath = _.trimRight(myOutputPath, '/');
+
         if (myOutputPath) {
             if(myApp.isDeploy){
                 url = path.join(myApp.deployPath, myOutputPath);
             }else{
-                url = path.join("/", myOutputPath);
+                url = path.join("#/", myOutputPath);
             }
         } else{
             return myTitle;
