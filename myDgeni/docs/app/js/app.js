@@ -13,9 +13,9 @@
                 // controller: 'ExamplesCtrl'
             })
             // manually added for testing purpose
-            .when('/api/esriLoader', {
-                templateUrl: './partials/modules/esri/maps/services/esriLoader/index.html'
-            })
+            // .when('/api/esriLoader', {
+            //     templateUrl: './partials/modules/esri/maps/services/esriLoader/index.html'
+            // })
             .otherwise({
                 redirectTo: '/'
             });
