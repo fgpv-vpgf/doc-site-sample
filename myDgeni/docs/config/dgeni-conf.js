@@ -28,7 +28,7 @@ module.exports = new Package('dgeni-example', [
   // 'mddocFileReader' in readFilesProcessor.sourceFiles
   readFilesProcessor.fileReaders.push(mddocFileReader);
 
-  log.level = 'debug'; // info, debug, silly
+  log.level = 'info'; // info, debug, silly
 
   readFilesProcessor.basePath = path.resolve(__dirname, '..');
   readFilesProcessor.sourceFiles = [
@@ -42,7 +42,7 @@ module.exports = new Package('dgeni-example', [
 
 // add custom tags: for mddoc
 .config(function(parseTagsProcessor, getInjectables) {
-  console.log('JKW path: ' + __dirname);
+  // console.log('JKW path: ' + __dirname);
 
   // need to remove memberof from original tagdefinition
   _.remove(parseTagsProcessor.tagDefinitions, function(tag) {
