@@ -88,12 +88,8 @@ gulp.task('deploy-prod', ['build'], function () {
 // Default Task
 gulp.task('default', ['serve']);
 
-// // Dgeni Task
-// gulp.task('dgeni', function() {
-//   var dgeni = new Dgeni([require('./config/dgeni-fgpv')]);
-//   return dgeni.generate();
-// });
-gulp.task('dgeni',['clean-docs'], function() {
+// Dgeni Tasks
+gulp.task('dgeni-build',['clean-docs'], function() {
   try {
     var dgeni = new Dgeni([require('./myDgeni/docs/config/dgeni-conf')]);
     return dgeni.generate();
@@ -112,16 +108,22 @@ gulp.task('clean-docs', function() {
     ]);
 });
 
-gulp.task('dgeni:clean', ['clean-docs', 'dgeni']);
+// important task: copy site resources to the app folder; images, styles, app.js
+// !myDgeni/docs/app/js/**/*.txt is for exclusion.
+gulp.task('doc-resources', ['dgeni-build'], function() {
+  return gulp.src(['myDgeni/docs/app/**/*', '!myDgeni/docs/app/js/**/*.txt'])
+  .pipe(gulp.dest('dist/mydgeni/docs/app'));
+});
 
-
+// run doc generation
+gulp.task('dgeni', ['clean-docs', 'dgeni-build', 'doc-resources']);
 
 // serve docs on local web server
 // and reload anytime source code or docs are modified
-gulp.task('dgeni:serve', ['dgeni:clean'], function() {
+gulp.task('dgeni:serve', ['dgeni'], function() {
   browserSync({
     server: {
-      baseDir: ['dist/mydgeni/docs']
+      baseDir: ['dist/mydgeni/docs/app']
     },
     open: true,
     port: 9001,
@@ -130,9 +132,3 @@ gulp.task('dgeni:serve', ['dgeni:clean'], function() {
 });
 
 
-// important task: copy site resources to the app folder; images, styles, app.js
-// !myDgeni/docs/app/js/**/*.txt is for exclusion.
-gulp.task('docs-app', ['dgeni:clean'], function () {
-  return gulp.src(['myDgeni/docs/app/**/*', '!myDgeni/docs/app/js/**/*.txt'])
-  .pipe(gulp.dest('dist/mydgeni/docs/app'));
-});
